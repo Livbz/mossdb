@@ -15,7 +15,7 @@ func New(conf *Config) (*DB, error) {
 	conf = conf.Default()
 	wal, err := wal.Open(conf.WalPath, nil)
 	if err != nil {
-		return nil, err
+		return nil, err + " - Open err - "
 	}
 	db := &DB{
 		store:   conf.Store,
@@ -28,7 +28,7 @@ func New(conf *Config) (*DB, error) {
 	})
 
 	if err := db.loadWal(); err != nil {
-		return nil, err
+		return nil, err + " - loadWal err - "
 	}
 
 	go db.watcher.Run()
