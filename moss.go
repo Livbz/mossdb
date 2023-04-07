@@ -15,7 +15,7 @@ func New(conf *Config) (*DB, error) {
 	conf = conf.Default()
 	wal, err := wal.Open(conf.WalPath, nil)
 	if err != nil {
-		fmt.println(" - Open err - ")
+		fmt.Println(" - Open err - ")
 		return nil, err
 	}
 	db := &DB{
@@ -29,7 +29,7 @@ func New(conf *Config) (*DB, error) {
 	})
 
 	if err := db.loadWal(); err != nil {
-		fmt.println(" - loadWal err - ")
+		fmt.Println(" - loadWal err - ")
 		return nil, err
 	}
 
